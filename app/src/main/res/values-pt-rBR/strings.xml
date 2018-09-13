@@ -3,4 +3,11 @@
     <string name="app_name">Laboratorio de Android</string>
     <string name="hello_message">Ola Mundo</string>
     <string name="buttonText">Aqui é Botão porra!</string>
+    <string name="text_login">Acesso</string>
+    <string name="text_hint_login">Por favor coloque seu e-mail</string>
+    <string name="text_hint_password">Por favor a senha</string>
+    <string name="text_password">Senha</string>
+    <string name="text_radio">BotãoRadial</string>
+    <string name="text_checkbox">MarcaCaixa</string>
+    <string name="text_switch">O que diabos é isso?</string>
 </resources>
