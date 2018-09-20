@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Laboratorio de Android</string>
-    <string name="hello_message">Ola Mundo</string>
-    <string name="buttonText">Aqui é Botão porra!</string>
-    <string name="text_login">Acesso</string>
-    <string name="text_hint_login">Por favor coloque seu e-mail</string>
-    <string name="text_hint_password">Por favor a senha</string>
-    <string name="text_password">Senha</string>
-    <string name="text_radio">BotãoRadial</string>
-    <string name="text_checkbox">MarcaCaixa</string>
-    <string name="text_switch">O que diabos é isso?</string>
+    <string name="tv_hello">Ola Mundo</string>
+    <string name="btn_text">Aqui é Botão porra!</string>
+    <string name="tv_login">Acesso</string>
+    <string name="et_hint_login">Por favor coloque seu e-mail</string>
+    <string name="et_hint_password">Por favor a senha</string>
+    <string name="tv_password">Senha</string>
+    <string name="btn_radial">BotãoRadial</string>
+    <string name="btn_checkbox">MarcaCaixa</string>
+    <string name="btn_switch">O que diabos é isso?</string>
+    <string name="btn_login">Entra Porra</string>
+    <string name="modal_dialog_message">Quer sair do app?</string>
+    <string name="modal_dialog_title">Exit</string>
+    <string name="modal_ok">OK</string>
+    <string name="modal_no">NO</string>
 </resources>

@@ -13,32 +13,32 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="0"
-        android:text="@string/text_radio"
+        android:text="@string/btn_radial"
         android:layout_columnWeight="1"
         android:gravity="fill"/>
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_row="0"
-        android:text="@string/text_checkbox"
+        android:text="@string/btn_checkbox"
         android:layout_columnWeight="1"
         android:gravity="fill"/>
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/btn_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="1"
-        android:text="@string/text_switch"
+        android:text="@string/btn_switch"
         android:layout_columnWeight="1"
         android:gravity="fill"/>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"

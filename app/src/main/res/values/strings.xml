@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">AndroidLabs</string>
-    <string name="hello_message">Hello World</string>
-    <string name="buttonText">I\'m a Button</string>
-    <string name="text_login">Login</string>
-    <string name="text_hint_login">Please type your e-mail here</string>
-    <string name="text_hint_password">Pleaste type your password</string>
-    <string name="text_password">Password</string>
-    <string name="text_radio">RadioButton</string>
-    <string name="text_checkbox">Checkbox</string>
-    <string name="text_switch">What does this do?</string>
+    <string name="tv_hello">Hello World</string>
+    <string name="btn_text">I\'m a Button</string>
+    <string name="tv_login">Login</string>
+    <string name="et_hint_login">Please type your e-mail here</string>
+    <string name="et_hint_password">Pleaste type your password</string>
+    <string name="tv_password">Password</string>
+    <string name="btn_radial">RadioButton</string>
+    <string name="btn_checkbox">Checkbox</string>
+    <string name="btn_switch">What does this do?</string>
+    <string name="btn_login">Login</string>
+    <string name="modal_dialog_message">Do you want to exit the app?</string>
+    <string name="modal_dialog_title">Exit</string>
+    <string name="modal_ok">OK</string>
+    <string name="modal_no">NO</string>
 </resources>
