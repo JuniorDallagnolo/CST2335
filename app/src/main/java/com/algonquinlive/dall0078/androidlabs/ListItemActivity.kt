@@ -28,12 +28,13 @@ class ListItemActivity : Activity() {
                 val toast = Toast.makeText(this, "Switch is Off", Toast.LENGTH_LONG)
                 toast.show()
             }
-        btn_check.setOnCheckedChangeListener {buttonView, isChecked ->
+        }
+        btn_check.setOnCheckedChangeListener { buttonView, isChecked ->
             val builder = AlertDialog.Builder(this)
             builder.setMessage(R.string.modal_dialog_message)
                     .setTitle(R.string.modal_dialog_title)
                     .setPositiveButton(R.string.modal_ok) { dialog, id ->
-                        val resultIntent = Intent( )
+                        val resultIntent = Intent()
                         resultIntent.putExtra("Response", "Here is my response")
                         setResult(Activity.RESULT_OK, resultIntent)
                         finish()
@@ -42,31 +43,31 @@ class ListItemActivity : Activity() {
                     }
                     .show()
         }
-        }
     }
 
     override fun onResume() {
-        super.onResume();
+        super.onResume()
         Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
+
     override fun onStart() {
-        super.onStart();
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        super.onStart()
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onPause() {
-        super.onPause();
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        super.onPause()
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onStop() {
-        super.onStop();
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        super.onStop()
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onDestroy() {
-        super.onDestroy();
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        super.onDestroy()
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -78,7 +79,6 @@ class ListItemActivity : Activity() {
     }
 
     private fun dispatchTakePictureIntent() {
-
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(packageManager) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)

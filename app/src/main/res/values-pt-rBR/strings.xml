@@ -15,4 +15,5 @@
     <string name="modal_dialog_title">Exit</string>
     <string name="modal_ok">OK</string>
     <string name="modal_no">NO</string>
+    <string name="btn_chat">Comecar Chat</string>
 </resources>

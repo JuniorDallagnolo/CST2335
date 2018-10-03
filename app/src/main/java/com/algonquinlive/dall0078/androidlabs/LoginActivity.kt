@@ -17,44 +17,44 @@ class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
-        prefs = this.getSharedPreferences(PREFS_KEY,0)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
+        prefs = this.getSharedPreferences(PREFS_KEY, 0)
         var loginEmail = prefs!!.getString("loginEmail", "email@domain.com")
         et_username.setText(loginEmail)
-        btn_login.setOnClickListener {loginClick() }
+        btn_login.setOnClickListener { loginClick() }
     }
 
-    fun loginClick(){
+    fun loginClick() {
         val editor = prefs!!.edit()
         editor.putString("loginEmail", et_username.text.toString())
         editor.apply()
-        var intent = Intent(this,StartActivity::class.java)
+        var intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
     }
 
 
     override fun onResume() {
         super.onResume()
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(this.localClassName,"In " + object{}.javaClass.enclosingMethod.name)
+        Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
     }
 }

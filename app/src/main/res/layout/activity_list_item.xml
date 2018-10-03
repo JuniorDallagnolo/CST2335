@@ -3,48 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ListItemActivity"
     android:columnCount="2"
-    android:rowCount="2">
+    android:rowCount="2"
+    tools:context=".ListItemActivity">
 
     <RadioButton
         android:id="@+id/radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="0"
         android:layout_row="0"
-        android:text="@string/btn_radial"
+        android:layout_column="0"
         android:layout_columnWeight="1"
-        android:gravity="fill"/>
+        android:gravity="fill"
+        android:text="@string/btn_radial" />
 
     <CheckBox
         android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="1"
         android:layout_row="0"
-        android:text="@string/btn_checkbox"
+        android:layout_column="1"
         android:layout_columnWeight="1"
-        android:gravity="fill"/>
+        android:gravity="fill"
+        android:text="@string/btn_checkbox" />
 
     <Switch
         android:id="@+id/btn_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="0"
         android:layout_row="1"
-        android:text="@string/btn_switch"
+        android:layout_column="0"
         android:layout_columnWeight="1"
-        android:gravity="fill"/>
+        android:gravity="fill"
+        android:text="@string/btn_switch" />
 
     <ImageButton
         android:id="@+id/btn_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="1"
         android:layout_row="1"
-        android:src="@android:drawable/ic_menu_camera"
+        android:layout_column="1"
         android:layout_columnWeight="1"
+        android:contentDescription="A Camera Image"
         android:gravity="fill"
-        android:contentDescription="A Camera Image"/>
+        android:src="@android:drawable/ic_menu_camera" />
 </GridLayout>
