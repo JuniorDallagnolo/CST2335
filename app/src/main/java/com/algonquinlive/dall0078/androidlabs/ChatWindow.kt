@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_start.*
 class ChatWindow : Activity() {
 
     var chatMessages = ArrayList<String>() //automatically grows
+    private val ACTIVITY_NAME = "ChatWindow"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,11 @@ class ChatWindow : Activity() {
         val dbHelper = ChatDatabaseHelper() //get helper object
          val db = dbHelper.writableDatabase //open your database
         val results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
+        //we added this log and for loop today
+        Log.i(ACTIVITY_NAME, "Cursor's column count = " + results.getColumnCount());
+        for(i in 0..results.getColumnCount() - 1){
+            Log.i(ACTIVITY_NAME, results.getColumnName(i))
+        }
         val numRows = results.count
         val idIndex = results.getColumnIndex("_id")
         val idMessages = results.getColumnIndex("Messages")
@@ -109,8 +116,7 @@ class ChatWindow : Activity() {
 
     inner class ChatDatabaseHelper : SQLiteOpenHelper(this@ChatWindow, DATABASE_NAME, null, VERSION_NUM) {
         override fun onCreate(db: SQLiteDatabase) {
-            db.execSQL("CREATE TABLE " + TABLE_NAME +
-                    " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_MESSAGES + " TEXT)") //create the table
+            db.execSQL("CREATE TABLE $TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, $KEY_MESSAGES TEXT)") //create the table
         }
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
