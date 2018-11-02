@@ -20,7 +20,7 @@ class ListItemActivity : Activity() {
         setContentView(R.layout.activity_list_item)
         Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
         btn_image.setOnClickListener { dispatchTakePictureIntent() }
-        btn_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+        btn_switch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 val toast = Toast.makeText(this, "Switch is On", Toast.LENGTH_SHORT)
                 toast.show()
@@ -29,17 +29,17 @@ class ListItemActivity : Activity() {
                 toast.show()
             }
         }
-        btn_check.setOnCheckedChangeListener { buttonView, isChecked ->
+        btn_check.setOnCheckedChangeListener { _, _ ->
             val builder = AlertDialog.Builder(this)
             builder.setMessage(R.string.modal_dialog_message)
                     .setTitle(R.string.modal_dialog_title)
-                    .setPositiveButton(R.string.modal_ok) { dialog, id ->
+                    .setPositiveButton(R.string.modal_ok) { _, _ ->
                         val resultIntent = Intent()
                         resultIntent.putExtra("Response", "Here is my response")
                         setResult(Activity.RESULT_OK, resultIntent)
                         finish()
                     }
-                    .setNegativeButton(R.string.modal_no) { dialog, id ->
+                    .setNegativeButton(R.string.modal_no) { _, _ ->
                     }
                     .show()
         }

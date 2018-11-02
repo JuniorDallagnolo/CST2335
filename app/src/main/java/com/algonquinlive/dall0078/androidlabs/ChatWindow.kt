@@ -28,31 +28,32 @@ class ChatWindow : Activity() {
          val db = dbHelper.writableDatabase //open your database
         val results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
         //we added this log and for loop today
-        Log.i(ACTIVITY_NAME, "Cursor's column count = " + results.getColumnCount());
-        for(i in 0..results.getColumnCount() - 1){
+        Log.i(ACTIVITY_NAME, "Cursor's column count = " + results.getColumnCount())
+        for(i in 0 until results.columnCount){
             Log.i(ACTIVITY_NAME, results.getColumnName(i))
         }
-        val numRows = results.count
+        results.count
         val idIndex = results.getColumnIndex("_id")
         val idMessages = results.getColumnIndex("Messages")
         results.moveToFirst() //point to first row
         while (!results.isAfterLast) {
-            var thisID = results.getInt(idIndex)
-            var thisMessage = results.getString(idMessages)
+            results.getInt(idIndex)
+            val thisMessage = results.getString(idMessages)
             chatMessages.add(thisMessage)
             results.moveToNext() // go to next
         }
+        results.close();
 
         //get id for list view, edit text and send button
-        var editText = findViewById(R.id.edit) as EditText
-        var listItem = findViewById(R.id.listItems) as ListView
-        var sendBtn = findViewById(R.id.btnSend1) as Button
+        val editText = findViewById(R.id.edit) as EditText
+        val listItem = findViewById(R.id.listItems) as ListView
+        val sendBtn = findViewById(R.id.btnSend1) as Button
 
-        var messageAdapter = ChatAdapter(this)
+        val messageAdapter = ChatAdapter(this)
 
         sendBtn.setOnClickListener {
-            var context = this
-            var typedString = editText.text.toString()
+            val context = this
+            val typedString = editText.text.toString()
             chatMessages.add(typedString)
             //LAB 5 STUFF writes to database
             val newRow = ContentValues()
@@ -79,17 +80,17 @@ class ChatWindow : Activity() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
 
-            var inflater = LayoutInflater.from(parent.getContext())
+            val inflater = LayoutInflater.from(parent.getContext())
 
-            var result: View
+            val result: View
 
             if (position % 2 == 0) {
 
-                result = inflater.inflate(R.layout.chat_row_incoming, null)
+                result = inflater.inflate(R.layout.chat_row_incoming,parent,false)
 
             } else {
 
-                result = inflater.inflate(R.layout.chat_row_outgoing, null)
+                result = inflater.inflate(R.layout.chat_row_outgoing, parent,false)
             }
 
             val message = result.findViewById(R.id.message_text) as TextView

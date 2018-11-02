@@ -15,4 +15,6 @@
     <string name="modal_ok">OK</string>
     <string name="modal_no">NO</string>
     <string name="btn_chat">Start Chat</string>
+    <string name="iv_description">An Image</string>
+    <string name="btn_weather">Start Forecast</string>
 </resources>

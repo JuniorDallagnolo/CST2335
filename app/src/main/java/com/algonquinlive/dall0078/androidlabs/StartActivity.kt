@@ -17,17 +17,23 @@ class StartActivity : Activity() {
         setContentView(R.layout.activity_start)
         Log.i(this.localClassName, "In " + object {}.javaClass.enclosingMethod.name)
         val btn_ref = findViewById(btn_button.id)
-        btn_ref.setOnClickListener { v ->
+        btn_ref.setOnClickListener {
             val intent = Intent(this, ListItemActivity::class.java)
             startActivityForResult(intent, 50)
         }
-        var chatButton = findViewById(R.id.chatButton)
+        val chatButton = findViewById(R.id.chatButton)
         chatButton.setOnClickListener{
 
             val intent = Intent(this, ChatWindow::class.java)
             startActivity(intent)
 
             Log.i(activityName, "User clicked Start Chat")
+        }
+        val weatherBtn = findViewById(R.id.weatherForecastBtn)
+        weatherBtn.setOnClickListener {
+            val intent = Intent(this, WeatherForecast::class.java)
+
+            startActivity(intent)
         }
     }
 
