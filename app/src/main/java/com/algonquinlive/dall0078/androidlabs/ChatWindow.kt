@@ -3,6 +3,8 @@ package com.algonquinlive.dall0078.androidlabs
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
@@ -18,18 +20,27 @@ class ChatWindow : Activity() {
 
     var chatMessages = ArrayList<String>() //automatically grows
     private val ACTIVITY_NAME = "ChatWindow"
+    lateinit var db: SQLiteDatabase
+    lateinit var results: Cursor
+    lateinit var dbHelper: ChatDatabaseHelper
+    lateinit var messageAdapter: ChatAdapter
+    var messagePosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_window)
 
+        //LAB 7 STUFF
+        var fragmentLocation = findViewById(R.id.fragment_location)
+        var iAmTablet = fragmentLocation != null //Very important
+
         //LAB 5 STUFF
-        val dbHelper = ChatDatabaseHelper() //get helper object
-         val db = dbHelper.writableDatabase //open your database
-        val results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
+        dbHelper = ChatDatabaseHelper() //get helper object
+        db = dbHelper.writableDatabase //open your database
+        results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
         //we added this log and for loop today
-        Log.i(ACTIVITY_NAME, "Cursor's column count = " + results.getColumnCount())
-        for(i in 0 until results.columnCount){
+        Log.i(ACTIVITY_NAME, "Cursor's column count = " + results.columnCount)
+        for (i in 0 until results.columnCount) {
             Log.i(ACTIVITY_NAME, results.getColumnName(i))
         }
         results.count
@@ -42,14 +53,37 @@ class ChatWindow : Activity() {
             chatMessages.add(thisMessage)
             results.moveToNext() // go to next
         }
-        results.close();
+//        results.close();
 
         //get id for list view, edit text and send button
         val editText = findViewById(R.id.edit) as EditText
         val listItem = findViewById(R.id.listItems) as ListView
         val sendBtn = findViewById(R.id.btnSend1) as Button
 
-        val messageAdapter = ChatAdapter(this)
+        //LAB 7 Stuff
+        listItem.setOnItemClickListener { parent, view, position, id ->
+            messagePosition = position
+            val string = chatMessages[position] //messages is your ArrayList<string>
+            val dataToPass = Bundle()
+            dataToPass.putString("Message", string)
+            dataToPass.putLong("ID", id)
+            if (iAmTablet) {
+                //Tablet
+                val newFragment = MessageFragment()
+                newFragment.arguments = dataToPass //bundle goes to the Fragment
+                newFragment.amITablet = iAmTablet
+                val transition = fragmentManager.beginTransaction() // how to load fragment ADD REMOVE OR REPLACE
+                transition.replace(R.id.fragment_location, newFragment) // where to load, what to load
+                transition.commit() //make it run
+            } else {
+                //Phone
+                var detailsActivity = Intent(this, MessageDetails::class.java)
+                detailsActivity.putExtras(dataToPass) //send data bro
+                startActivityForResult(detailsActivity,35)
+            }
+        }
+
+        messageAdapter = ChatAdapter(this)
 
         sendBtn.setOnClickListener {
             val context = this
@@ -57,8 +91,10 @@ class ChatWindow : Activity() {
             chatMessages.add(typedString)
             //LAB 5 STUFF writes to database
             val newRow = ContentValues()
-            newRow.put(KEY_MESSAGES,typedString)
-            db.insert(TABLE_NAME,"",newRow)
+            newRow.put(KEY_MESSAGES, typedString)
+            db.insert(TABLE_NAME, "", newRow)
+            results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
+
 
             messageAdapter.notifyDataSetChanged()
             editText.setText("")
@@ -70,6 +106,19 @@ class ChatWindow : Activity() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    fun deleteMessage(id: Long) {
+        db.delete(TABLE_NAME, "_id=$id", null)
+        results = db.query(TABLE_NAME, arrayOf("_id", KEY_MESSAGES), null, null, null, null, null, null)
+        chatMessages.removeAt(messagePosition)
+        messageAdapter.notifyDataSetChanged()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 35 && resultCode == RESULT_OK){
+            deleteMessage(data?.getLongExtra("ID", 0 )!!)
+        }
     }
 
     inner class ChatAdapter(ctx: Context) : ArrayAdapter<String>(ctx, 0) {
@@ -84,13 +133,13 @@ class ChatWindow : Activity() {
 
             val result: View
 
-            if (position % 2 == 0) {
+            result = if (position % 2 == 0) {
 
-                result = inflater.inflate(R.layout.chat_row_incoming,parent,false)
+                inflater.inflate(R.layout.chat_row_incoming, parent, false)
 
             } else {
 
-                result = inflater.inflate(R.layout.chat_row_outgoing, parent,false)
+                inflater.inflate(R.layout.chat_row_outgoing, parent, false)
             }
 
             val message = result.findViewById(R.id.message_text) as TextView
@@ -106,7 +155,9 @@ class ChatWindow : Activity() {
         }
 
         override fun getItemId(position: Int): Long {
-            return 0
+            results.moveToPosition(position)
+            val index = results.getColumnIndex("_id")
+            return results.getInt(index).toLong()
         }
     }
 

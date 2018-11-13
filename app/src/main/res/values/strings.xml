@@ -17,4 +17,9 @@
     <string name="btn_chat">Start Chat</string>
     <string name="iv_description">An Image</string>
     <string name="btn_weather">Start Forecast</string>
+    <string name="btn_toolbar">Test Toolbar</string>
+    <string name="btn_snack">Snackbar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

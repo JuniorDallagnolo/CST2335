@@ -18,4 +18,8 @@
     <string name="btn_chat">Comecar Chat</string>
     <string name="iv_description">Uma Imagem</string>
     <string name="btn_weather">Previsao Tempo</string>
+    <string name="btn_toolbar">Toolbar</string>
+    <string name="btn_snack">Snackbar</string>
+
+
 </resources>

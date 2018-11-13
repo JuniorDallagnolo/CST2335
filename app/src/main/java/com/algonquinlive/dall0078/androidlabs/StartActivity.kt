@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -33,6 +32,11 @@ class StartActivity : Activity() {
         weatherBtn.setOnClickListener {
             val intent = Intent(this, WeatherForecast::class.java)
 
+            startActivity(intent)
+        }
+        val toolbarBtn = findViewById(R.id.testToolbar)
+        toolbarBtn.setOnClickListener {
+            val intent = Intent (this,TestToolbar::class.java)
             startActivity(intent)
         }
     }
