@@ -20,6 +20,9 @@
     <string name="btn_weather">Previsao Tempo</string>
     <string name="btn_toolbar">Toolbar</string>
     <string name="btn_snack">Snackbar</string>
+    <string name="dia_title">Do you want to cancel</string>
+    <string name="dia_pos">Yes</string>
+    <string name="dia_neg">No</string>
 
 
 </resources>
