@@ -23,6 +23,8 @@
     <string name="dia_title">Do you want to cancel</string>
     <string name="dia_pos">Yes</string>
     <string name="dia_neg">No</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
 </resources>

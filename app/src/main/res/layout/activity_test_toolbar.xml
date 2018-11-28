@@ -3,17 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TestToolbar">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/lab8_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lab8_toolbar" />
-    <Button
-        android:id="@+id/snackBar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_snack"/>
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lab8_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/snackBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:text="@string/btn_snack" />
+        </LinearLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/nav_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true" />
+
+    </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
